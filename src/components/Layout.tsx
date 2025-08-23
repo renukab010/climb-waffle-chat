@@ -13,8 +13,8 @@ export default function Layout({ children }: LayoutProps) {
         <AppSidebar />
         
         <div className="flex-1 flex flex-col">
-          {/* Header with sidebar trigger */}
-          <header className="h-14 flex items-center justify-between px-4 border-b border-border bg-card/90 backdrop-blur-sm relative z-20">
+          {/* Fixed Header with sidebar trigger */}
+          <header className="fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-4 border-b border-border bg-card/95 backdrop-blur-sm z-30">
             <SidebarTrigger className="flex items-center gap-2 hover:bg-muted/50 rounded-lg p-2 transition-colors">
               <Menu className="h-5 w-5" />
               <span className="text-sm font-medium">Menu</span>
@@ -25,8 +25,8 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </header>
 
-          {/* Main content - full height container */}
-          <main className="flex-1 relative">
+          {/* Main content - adjusted for fixed header */}
+          <main className="flex-1 pt-14">
             {children}
           </main>
         </div>

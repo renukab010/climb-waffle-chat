@@ -14,7 +14,7 @@ export default function Layout({ children }: LayoutProps) {
         
         <div className="flex-1 flex flex-col">
           {/* Header with sidebar trigger */}
-          <header className="h-14 flex items-center justify-between px-4 border-b border-border bg-card/30 backdrop-blur-sm">
+          <header className="h-14 flex items-center justify-between px-4 border-b border-border bg-card/90 backdrop-blur-sm relative z-20">
             <SidebarTrigger className="flex items-center gap-2 hover:bg-muted/50 rounded-lg p-2 transition-colors">
               <Menu className="h-5 w-5" />
               <span className="text-sm font-medium">Menu</span>
@@ -25,8 +25,8 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </header>
 
-          {/* Main content */}
-          <main className="flex-1 overflow-hidden">
+          {/* Main content - full height container */}
+          <main className="flex-1 relative">
             {children}
           </main>
         </div>

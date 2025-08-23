@@ -75,9 +75,9 @@ export default function Chat() {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Header */}
-      <div className="p-4 border-b border-border bg-card/50">
+    <div className="flex flex-col h-screen">
+      {/* Fixed Header - positioned to account for sidebar */}
+      <div className="fixed top-14 left-0 md:left-64 right-0 z-10 p-4 border-b border-border bg-card/90 backdrop-blur-sm">
         <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <span className="bg-gradient-to-r from-sunset to-primary bg-clip-text text-transparent">
             Chat with Waffle
@@ -86,8 +86,8 @@ export default function Chat() {
         <p className="text-muted-foreground">Your climbing companion for questions and conversations</p>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Messages - Scrollable area between fixed header and footer */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 pt-28 pb-32">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -121,8 +121,8 @@ export default function Chat() {
         )}
       </div>
 
-      {/* Input Area */}
-      <div className="p-4 border-t border-border bg-card/50">
+      {/* Fixed Input Area - positioned to account for sidebar */}
+      <div className="fixed bottom-0 left-0 md:left-64 right-0 z-10 p-4 border-t border-border bg-card/90 backdrop-blur-sm">
         <div className="flex items-end gap-2">
           <div className="flex-1 relative">
             <Input

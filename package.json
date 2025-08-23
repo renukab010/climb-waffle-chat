@@ -1,0 +1,25 @@
+{
+  "name": "climbing-waffle-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Climbing Waffle - Frontend PWA + Backend API Monorepo",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && echo 'Backend setup coming soon'"
+  },
+  "keywords": [
+    "climbing",
+    "pwa",
+    "react",
+    "fastapi",
+    "monorepo"
+  ],
+  "author": "Climbing Waffle",
+  "license": "MIT"
+}

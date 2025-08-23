@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				/* Custom Climbing Waffle Colors */
+				mountain: 'hsl(var(--mountain))',
+				forest: 'hsl(var(--forest))',
+				sunset: 'hsl(var(--sunset))',
+				waffle: 'hsl(var(--waffle))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

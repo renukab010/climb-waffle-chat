@@ -1,9 +1,8 @@
 const CACHE_NAME = 'climbing-waffle-v1';
 const STATIC_CACHE_URLS = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
-  '/manifest.json'
+  '/manifest.json',
+  '/favicon.ico'
 ];
 
 // Install event
@@ -14,6 +13,7 @@ self.addEventListener('install', (event) => {
         return cache.addAll(STATIC_CACHE_URLS);
       })
   );
+  self.skipWaiting();
 });
 
 // Activate event
@@ -29,19 +29,43 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim();
 });
 
-// Fetch event
+// Fetch event with network-first strategy for dynamic content
 self.addEventListener('fetch', (event) => {
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') return;
+  
+  // Skip chrome-extension and other non-http requests
+  if (!event.request.url.startsWith('http')) return;
+
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then((response) => {
-        // Return cached response if found
-        if (response) {
-          return response;
+        // Clone the response before using it
+        const responseClone = response.clone();
+        
+        // Cache successful responses for static assets
+        if (response.status === 200 && isStaticAsset(event.request.url)) {
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
         }
-        // Otherwise fetch from network
-        return fetch(event.request);
+        
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache if network fails
+        return caches.match(event.request);
       })
   );
 });
+
+// Helper function to identify static assets
+function isStaticAsset(url) {
+  const staticExtensions = ['.js', '.css', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2'];
+  return staticExtensions.some(ext => url.includes(ext)) || 
+         url.includes('/static/') || 
+         url.includes('/assets/');
+}

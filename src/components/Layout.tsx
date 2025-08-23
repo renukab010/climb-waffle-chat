@@ -20,8 +20,8 @@ export default function Layout({ children }: LayoutProps) {
               <span className="text-sm font-medium">Menu</span>
             </SidebarTrigger>
             
-            <div className="text-xs text-muted-foreground">
-              Climbing Waffle PWA
+            <div className="text-md text-muted-foreground">
+              Climbing Waffle
             </div>
           </header>
 

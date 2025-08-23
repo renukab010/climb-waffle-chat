@@ -12,7 +12,7 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar"
-import climbingWaffleLogo from "@/assets/climbing-waffle-logo.jpg"
+import climbingWaffleLogo from "@/assets/climbing-waffle-logo.png"
 
 const menuItems = [
   { title: "Chat", url: "/", icon: MessageCircle },
@@ -40,7 +40,7 @@ export function AppSidebar() {
             <img 
               src={climbingWaffleLogo} 
               alt="Climbing Waffle" 
-              className="h-8 w-16 object-cover rounded"
+              className="h-16 w-16 object-cover rounded"
             />
           )}
           {collapsed && (

@@ -1,73 +1,106 @@
-# Welcome to your Lovable project
+# Climbing Waffle - Your Adventure Companion 🧗‍♀️🧇
 
-## Project info
+A Progressive Web App (PWA) for climbing enthusiasts to chat with AI assistance and plan their next climb.
 
-**URL**: https://lovable.dev/projects/858f61aa-a06c-483a-bbe5-0141f3635188
+## ✨ Features
 
-## How can I edit this code?
+- **Progressive Web App (PWA)** - Installable on mobile and desktop
+- **Offline Support** - Works even without internet connection
+- **Modern UI** - Built with React, TypeScript, and Tailwind CSS
+- **Responsive Design** - Works perfectly on all devices
+- **AI Chat** - Get climbing advice and plan adventures
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/858f61aa-a06c-483a-bbe5-0141f3635188) and start prompting.
+- Node.js 18+ 
+- npm or yarn
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
+1. **Clone the repository** (if you haven't already):
+   ```bash
+   git clone <your-repo-url>
+   cd climb-waffle-chat
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Running the App
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+#### Development Mode
+```bash
 npm run dev
 ```
+The app will be available at: **http://localhost:8080**
 
-**Edit a file directly in GitHub**
+#### Production Build
+```bash
+npm run build
+npm run preview
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📱 PWA Features
 
-**Use GitHub Codespaces**
+This app is a **Progressive Web App** with the following features:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- ✅ **Installable** - Add to home screen on mobile/desktop
+- ✅ **Offline Support** - Service worker caches content
+- ✅ **App-like Experience** - Standalone mode without browser UI
+- ✅ **Fast Loading** - Optimized caching and performance
+- ✅ **Cross-platform** - Works on iOS, Android, Windows, macOS, Linux
 
-## What technologies are used for this project?
+### Installing as PWA
 
-This project is built with:
+1. **Chrome/Edge**: Click the install icon in the address bar
+2. **Firefox**: Click the install icon in the address bar
+3. **Safari**: Use "Add to Home Screen" from the share menu
+4. **Mobile**: Use "Add to Home Screen" from browser menu
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🛠️ Tech Stack
 
-## How can I deploy this project?
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + shadcn/ui
+- **PWA**: Vite PWA Plugin
+- **State Management**: React Query
+- **Forms**: React Hook Form + Zod validation
 
-Simply open [Lovable](https://lovable.dev/projects/858f61aa-a06c-483a-bbe5-0141f3635188) and click on Share -> Publish.
+## 📁 Project Structure
 
-## Can I connect a custom domain to my Lovable project?
+```
+climb-waffle-chat/
+├── src/                 # Source code
+├── public/             # Static assets
+│   ├── manifest.json   # PWA manifest
+│   ├── sw.js          # Service worker
+│   └── icons/         # PWA icons
+├── vite.config.ts      # Vite configuration
+└── package.json        # Dependencies
+```
 
-Yes, you can!
+## 🔧 Available Scripts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🌐 Browser Support
+
+- Chrome 67+
+- Firefox 67+
+- Safari 11.1+
+- Edge 79+
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+**Happy Climbing! 🧗‍♀️🧇**

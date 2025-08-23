@@ -5,9 +5,8 @@ backend/
 .git/
 .gitignore
 
-# Documentation
-README.md
-*.md
+# Documentation (but keep README for context)
+# README.md - NOT ignored
 
 # Development files
 .vscode/
@@ -23,3 +22,8 @@ npm-debug.log*
 
 # Environment files
 .env*
+
+# Keep essential files for Vercel build
+# package.json - NOT ignored
+# vercel.json - NOT ignored
+# frontend/ - NOT ignored

@@ -1,5 +1,6 @@
-import { MessageCircle, Settings, Mountain } from "lucide-react"
+import { MessageCircle, Settings, Mountain, LogOut, User, Calendar } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
+import { useEffect } from "react"
 import {
   Sidebar,
   SidebarContent,
@@ -10,20 +11,39 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarHeader,
+  SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useAuth } from "@/contexts/AuthContext"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import climbingWaffleLogo from "@/assets/climbing-waffle-logo.png"
 
 const menuItems = [
   { title: "Chat", url: "/", icon: MessageCircle },
+  { title: "Upcoming", url: "/upcoming", icon: Calendar },
   { title: "Settings", url: "/settings", icon: Settings },
 ]
 
 export function AppSidebar() {
-  const { state } = useSidebar()
+  const { state, isMobile, setOpenMobile } = useSidebar()
+  const { currentUser, signOut } = useAuth()
   const location = useLocation()
   const currentPath = location.pathname
   const collapsed = state === "collapsed"
+
+  // Auto-collapse sidebar on mobile after navigation
+  useEffect(() => {
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+  }, [currentPath, isMobile, setOpenMobile])
+
+  const handleSignOut = async () => {
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+    await signOut()
+  }
 
   const isActive = (path: string) => currentPath === path
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
@@ -83,6 +103,45 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter className="p-4 border-t border-border">
+        {currentUser && (
+          <div className="space-y-2">
+            {/* User Info */}
+            <div className={`flex items-center gap-3 ${collapsed ? "justify-center" : ""}`}>
+              <Avatar className="h-8 w-8">
+                <AvatarImage src={currentUser.photoURL || undefined} alt={currentUser.displayName || "User"} />
+                <AvatarFallback>
+                  <User className="h-4 w-4" />
+                </AvatarFallback>
+              </Avatar>
+              {!collapsed && (
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">
+                    {currentUser.displayName || "User"}
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">
+                    {currentUser.email}
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* Logout Button */}
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={handleSignOut}
+                  className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
+                >
+                  <LogOut className="h-4 w-4" />
+                  {!collapsed && <span>Sign Out</span>}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </div>
+        )}
+      </SidebarFooter>
     </Sidebar>
   )
 }

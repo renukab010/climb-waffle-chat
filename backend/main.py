@@ -36,12 +36,16 @@ app.add_middleware(
 # Either set GOOGLE_APPLICATION_CREDENTIALS environment variable
 # or provide the service account key file path
 try:
-    # Try to initialize with default credentials first
     if not firebase_admin._apps:
-        # Check if we have a service account key file
         service_account_path = os.getenv("FIREBASE_SERVICE_ACCOUNT_KEY")
+        service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+
         if service_account_path and os.path.exists(service_account_path):
             cred = credentials.Certificate(service_account_path)
+            firebase_admin.initialize_app(cred)
+        elif service_account_json:
+            service_account_info = json.loads(service_account_json)
+            cred = credentials.Certificate(service_account_info)
             firebase_admin.initialize_app(cred)
         else:
             # Try to use default credentials (works in Google Cloud)
